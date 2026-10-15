@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CampusVoice – College Complaint Management System</title>
+<style>
+:root{--navy:#262262;--blue:#00aeef;--ink:#1d1a3f;--muted:#5d5b7a;--line:#dcdcea;--bg:#f6f7fb}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 "Segoe UI",system-ui,Roboto,sans-serif}
+h1,h2,h3{font-family:Georgia,serif;line-height:1.2;margin:0 0 .5em}
+header{background:var(--navy);color:#fff;position:sticky;top:0;z-index:5}
+.bar{max-width:980px;margin:auto;padding:12px 16px;display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.brand{font:700 1.2rem Georgia,serif;margin-right:auto;color:#fff;text-decoration:none}
+nav{display:flex;gap:6px;flex-wrap:wrap}
+nav a{color:#fff;text-decoration:none;border:1px solid rgba(255,255,255,.35);border-radius:8px;padding:8px 14px}
+nav a:hover{background:#fff;color:var(--navy)}
+main{max-width:980px;margin:auto;padding:20px 16px 50px}
+.page{display:none}
+.page:target,body:not(:has(.page:target)) #home{display:block}
+.hero{padding:26px 0 8px}
+.hero h1{font-size:clamp(1.9rem,6vw,3rem);max-width:15em}
+.hero p{max-width:40em;color:var(--muted);font-size:1.05rem}
+.row{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+.btn{display:inline-block;font:inherit;font-weight:600;cursor:pointer;text-decoration:none;background:var(--blue);color:#06233a;border:1px solid transparent;border-radius:8px;padding:10px 16px}
+.btn.alt{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn.sm{padding:4px 10px;font-size:.9rem}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-top:18px}
+.card{background:#fff;border:1px solid var(--line);border-radius:10px;padding:16px}
+.card h3{font-size:1.1rem}
+.card ul{margin:0;padding-left:1.1em;color:var(--muted);font-size:.93rem}
+.panel{max-width:520px;margin:10px auto}
+label{display:block;font-weight:600;margin:12px 0 4px;font-size:.93rem}
+input,select,textarea{width:100%;font:inherit;padding:10px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink)}
+textarea{min-height:110px;resize:vertical}
+.steps{counter-reset:s;list-style:none;padding:0;margin:0}
+.steps li{counter-increment:s;padding:6px 0 6px 38px;position:relative}
+.steps li::before{content:counter(s);position:absolute;left:0;top:5px;width:26px;height:26px;border-radius:50%;background:var(--navy);color:#fff;text-align:center;line-height:26px;font-size:.85rem}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-bottom:16px}
+.stat{background:#fff;border:1px solid var(--line);border-radius:10px;padding:12px}
+.stat b{display:block;font:700 1.7rem Georgia,serif}
+.tablewrap{overflow-x:auto;background:#fff;border:1px solid var(--line);border-radius:10px}
+table{width:100%;border-collapse:collapse;min-width:640px;font-size:.93rem}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:#eceaf8}
+.pill{display:inline-block;padding:2px 10px;border-radius:99px;font-size:.8rem;font-weight:600;border:1px solid currentColor}
+.p{color:#b7791f}.i{color:#0b86bd}.r{color:#1a8f5a}
+.note{color:var(--muted);font-size:.9rem;margin-top:12px}
+footer{text-align:center;color:var(--muted);font-size:.85rem;padding:20px 16px 30px}
+</style>
+</head>
+<body>
+<header><div class="bar">
+<a class="brand" href="#home">CampusVoice</a>
+<nav aria-label="Main">
+<a href="#home">Home</a><a href="#login">Student login</a><a href="#register">Register</a><a href="#submit">New complaint</a><a href="#track">My complaints</a><a href="#admin">Admin</a>
+</nav></div></header>
+
+<main>
+<!-- HOME -->
+<section class="page" id="home">
+<div class="hero"><h1>Report a campus problem. Watch it get fixed.</h1>
+<p>Stop chasing paper forms. Submit a complaint about electricity, Wi-Fi, classrooms, infrastructure or faculty, and follow its status until it is resolved.</p>
+<div class="row"><a class="btn" href="#register">Create student account</a><a class="btn alt" href="#login">Student login</a></div></div>
+
+<h2 style="margin-top:28px">What you can report</h2>
+<div class="grid">
+<div class="card"><h3>Electricity</h3><ul><li>Frequent power cuts</li><li>Faulty or exposed wiring</li><li>Non-working lights</li><li>AC / fans not working</li></ul></div>
+<div class="card"><h3>Wi-Fi</h3><ul><li>Slow internet speed</li><li>Frequent disconnection</li><li>No network coverage in hostel or labs</li></ul></div>
+<div class="card"><h3>Infrastructure</h3><ul><li>Broken furniture (benches, chairs, tables)</li><li>Damaged doors or windows</li><li>Non-functional projectors / ACs</li><li>Water leakage or cracks in the building</li></ul></div>
+<div class="card"><h3>Classroom</h3><ul><li>Overcrowded classrooms</li><li>Poor lighting or ventilation</li><li>Dirty greenboard</li><li>Unclean washrooms</li><li>Garbage not collected regularly</li></ul></div>
+<div class="card"><h3>Faculty-related</h3><ul><li>Syllabus not completed on time</li><li>Frequent absence without a substitute</li><li>Unfair evaluation or grading</li><li>Student doubts not addressed</li></ul></div>
+</div>
+
+<div class="grid">
+<div class="card"><h3>How it works</h3><ol class="steps"><li>Register and log in.</li><li>Pick a category and describe the issue.</li><li>Admin reviews and updates the status.</li><li>Track progress from your account.</li></ol></div>
+<div class="card"><h3>Why it matters</h3><ul><li>No lost or delayed paper complaints</li><li>Clear status and response time</li><li>One admin dashboard for every complaint</li><li>A complete record of past complaints</li></ul></div>
+</div>
+</section>
+
+<!-- REGISTER -->
+<section class="page" id="register"><div class="card panel">
+<h2>Create student account</h2>
+<form action="register.php" method="post">
+<label for="n">Full name</label><input id="n" name="name" required autocomplete="name">
+<label for="r">Roll number</label><input id="r" name="roll_no" required>
+<label for="e">College email</label><input id="e" name="email" type="email" required autocomplete="username">
+<label for="p">Password (6+ characters)</label><input id="p" name="password" type="password" minlength="6" required autocomplete="new-password">
+<div class="row"><button class="btn" type="submit">Register</button><a class="btn alt" href="#login">I have an account</a></div>
+</form></div></section>
+
+<!-- LOGIN -->
+<section class="page" id="login"><div class="card panel">
+<h2>Student login</h2>
+<form action="login.php" method="post">
+<label for="le">College email</label><input id="le" name="email" type="email" required autocomplete="username">
+<label for="lp">Password</label><input id="lp" name="password" type="password" required autocomplete="current-password">
+<div class="row"><button class="btn" type="submit">Log in</button><a class="btn alt" href="#register">Create account</a></div>
+</form></div></section>
+
+<!-- SUBMIT -->
+<section class="page" id="submit"><div class="card panel">
+<h2>File a complaint</h2>
+<form action="submit_complaint.php" method="post">
+<label for="cat">Category</label>
+<select id="cat" name="category" required>
+<option value="">Choose a category</option>
+<option>Electricity</option><option>Wi-Fi</option><option>Infrastructure</option><option>Classroom</option><option>Faculty-related</option>
+</select>
+<label for="typ">Issue type</label>
+<select id="typ" name="issue_type" required>
+<option value="">Choose an issue type</option>
+<optgroup label="Electricity"><option>Frequent power cuts</option><option>Faulty or exposed wiring</option><option>Non-working lights</option><option>AC / fans not working</option></optgroup>
+<optgroup label="Wi-Fi"><option>Slow internet speed</option><option>Frequent disconnection</option><option>No network coverage in hostel or labs</option></optgroup>
+<optgroup label="Infrastructure"><option>Broken furniture</option><option>Damaged doors or windows</option><option>Non-functional projector / AC</option><option>Water leakage or cracks</option></optgroup>
+<optgroup label="Classroom"><option>Overcrowded classroom</option><option>Poor lighting or ventilation</option><option>Dirty greenboard</option><option>Unclean washrooms</option><option>Garbage not collected regularly</option></optgroup>
+<optgroup label="Faculty-related"><option>Syllabus not completed on time</option><option>Absence without substitute</option><option>Unfair evaluation or grading</option><option>Student doubts not addressed</option></optgroup>
+</select>
+<label for="loc">Location (hostel, lab, room)</label><input id="loc" name="location" required>
+<label for="desc">Describe the problem</label><textarea id="desc" name="description" minlength="10" required></textarea>
+<div class="row"><button class="btn" type="submit">Submit complaint</button></div>
+</form></div></section>
+
+<!-- TRACK -->
+<section class="page" id="track">
+<h2>My complaints</h2>
+<div class="tablewrap"><table>
+<thead><tr><th>ID</th><th>Category</th><th>Issue</th><th>Filed</th><th>Status</th><th>Admin note</th></tr></thead>
+<tbody>
+<tr><td>#1</td><td>Wi-Fi</td><td>No network coverage in hostel</td><td>02 Oct 2026</td><td><span class="pill i">In progress</span></td><td>Technician assigned.</td></tr>
+<tr><td>#2</td><td>Classroom</td><td>Dirty greenboard</td><td>28 Sep 2026</td><td><span class="pill r">Resolved</span></td><td>Cleaned on 29 Sep.</td></tr>
+<tr><td>#3</td><td>Electricity</td><td>Fans not working</td><td>04 Oct 2026</td><td><span class="pill p">Pending</span></td><td>–</td></tr>
+</tbody></table></div>
+<p class="note">Sample rows shown. A server-side script (for example PHP with MySQL) fills this table with your own complaints.</p>
+</section>
+
+<!-- ADMIN -->
+<section class="page" id="admin">
+<h2>Admin dashboard</h2>
+<div class="stats">
+<div class="stat"><b>3</b>Total</div><div class="stat"><b class="p">1</b>Pending</div><div class="stat"><b class="i">1</b>In progress</div><div class="stat"><b class="r">1</b>Resolved</div>
+</div>
+<div class="tablewrap"><table>
+<thead><tr><th>ID</th><th>Student</th><th>Category</th><th>Issue</th><th>Status</th><th>Update</th></tr></thead>
+<tbody>
+<tr><td>#1</td><td>Abhi (2442010003)</td><td>Wi-Fi</td><td>No network coverage in hostel</td><td><span class="pill i">In progress</span></td>
+<td><form action="update_status.php" method="post"><input type="hidden" name="id" value="1"><select name="status" aria-label="Status for complaint 1"><option>Pending</option><option selected>In progress</option><option>Resolved</option></select><br><input name="note" placeholder="Note for student" aria-label="Note for complaint 1" style="margin-top:6px"><button class="btn sm" type="submit" style="margin-top:6px">Save</button></form></td></tr>
+<tr><td>#2</td><td>Aditya (2442010028)</td><td>Classroom</td><td>Dirty greenboard</td><td><span class="pill r">Resolved</span></td>
+<td><form action="update_status.php" method="post"><input type="hidden" name="id" value="2"><select name="status" aria-label="Status for complaint 2"><option>Pending</option><option>In progress</option><option selected>Resolved</option></select><br><input name="note" placeholder="Note for student" aria-label="Note for complaint 2" style="margin-top:6px"><button class="btn sm" type="submit" style="margin-top:6px">Save</button></form></td></tr>
+<tr><td>#3</td><td>Animika (2442010056)</td><td>Electricity</td><td>Fans not working</td><td><span class="pill p">Pending</span></td>
+<td><form action="update_status.php" method="post"><input type="hidden" name="id" value="3"><select name="status" aria-label="Status for complaint 3"><option selected>Pending</option><option>In progress</option><option>Resolved</option></select><br><input name="note" placeholder="Note for student" aria-label="Note for complaint 3" style="margin-top:6px"><button class="btn sm" type="submit" style="margin-top:6px">Save</button></form></td></tr>
+</tbody></table></div>
+<p class="note">Sample data shown. Each form posts to <code>update_status.php</code>, which you connect to your MySQL table.</p>
+</section>
+</main>
+
+<footer>College Complaint Management System · Group 37 · GLA University, Mathura</footer>
+</body>
+</html>
